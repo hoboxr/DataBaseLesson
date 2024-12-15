@@ -1,1 +1,2 @@
 # DataBaseLesson
+大二下学期数据库课设，使用的django与sqlserver，把需要的包下好，在setting中连接好数据库并做好数据迁移，之后进行运行
