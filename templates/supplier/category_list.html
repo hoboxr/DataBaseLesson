@@ -1,0 +1,32 @@
+{% extends 'supplier/supplier_base.html' %}
+
+{% block store_content %}
+
+{% for i in supplier_with_category_list %}
+<div>
+    <div class="container">
+        <div class="row">
+            {% for j in category_list %}
+            {% if j.supplier_id == i.supplier_id %}
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="card cardmodify cardbackground" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5><b>{{ j.category_name }}</b></h5>
+                    </div>
+                    <img class="card-img-top" src="{{ j.category_photo.url }}" alt="Card image cap" height="180px"
+                         width="320px">
+                    <div class="card-header">
+                        <h5><b>在售</b></h5>
+                        <p class="card-text">{{ j.category_notes }}</p>
+                        <a href="/product#{{j.category_id}}" class="btn btn-success btn-sm addtocartbutton"><font size="3px">进入该类商品</font></a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

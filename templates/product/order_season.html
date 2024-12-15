@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <div style="display: inline-block; width: 50%;">
+            {{ line_type|safe }}
+        </div>
+        <div style="display: inline-block; width: 50%;">
+            {{ season_chart|safe }}
+        </div>
+    </div>
+{% endblock %}

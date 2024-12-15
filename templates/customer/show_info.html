@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}个人信息中心{% endblock %}
+{% block css %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet"/>{% endblock %}
+
+{% block content %}
+<div class="container formback">
+    <div class="loginform jumbotron">
+        <h3>个人信息中心</h3>
+        <form class='form-group' action="/customer/show_info/" method="GET">
+            <div class="card-header">
+                <h5 align="left">用户名：{{ user_name }}</h5>
+                <h5 align="left">地址：{{ customer_address }}</h5>
+                <h5 align="left">公司：{{ customer_company }}</h5>
+                <h5 align="left">城市：{{ customer_city }}</h5>
+                <h5 align="left">地区：{{ customer_area }}</h5>
+                <h5 align="left">邮政编码：{{customer_postalcode }}</h5>
+                <h5 align="left">传真：{{ customer_fax }}</h5>
+                <h5 align="left">国家：{{ customer_country }}</h5>
+            </div>
+        </form>
+        <a href="/customer/edit_info/" class="btn btn-primary">编辑</a>
+    </div>
+</div>
+{% endblock %}

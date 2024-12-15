@@ -1,0 +1,79 @@
+{% extends 'product/product_base.html' %}
+{% block preproduct %}
+<div class="container headerdiv">
+    <h3 class="headertext" align="center">我的订单</h3>
+</div>
+{% endblock %}
+{% block product_content %}
+
+<style>
+    	.table th, .table td {
+    		text-align: center;
+    		vertical-align: middle!important;
+    	}
+    	.form-group {
+    	    width: 20%;
+        }
+
+        #submitOrderBtn {
+            width: 150px;
+            margin: 0 auto;
+       }
+</style>
+
+<div class="container jumbotron">
+    <form method="GET" action="{% url 'product:search_orders' %}">
+        <div class="form-group">
+            <label for="order_id">订单:</label>
+            <input type="text" class="form-control" id="order_id" name="order_id">
+        </div>
+        <button type="submit" class="btn btn-primary">搜索</button>
+    </form>
+
+    <div class="table-responsive text-nowrap">
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">序号</th>
+                <th scope="col">客户名称</th>
+                <th scope="col">商品</th>
+                <th scope="col">价格</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in order_list %}
+            <tr>
+                <td>{{ order.order_id }}</td>
+                <td>{{ order.order_customer_id.customer_name }}</td>
+                <td>{{ order.product.product_name }}</td>
+                <td>{{ order.product.product_price }}元</td>
+                <td><a href="{% url 'product:cancel_order' order.order_id %}">取消订单</a></td>
+            </tr>
+            {% empty %}
+            {% endfor %}
+            </tbody>
+        </table>
+        <p>产品总价: {{ total_price }}</p>
+        <p>总运费:{{total_charge}}</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button id="submitOrderBtn" class="btn btn-primary btn-lg btn-block">提交订单</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var submitOrderBtn = document.getElementById("submitOrderBtn");
+        submitOrderBtn.addEventListener("click", function() {
+            alert("订单提交成功！");
+            window.location.href = "{% url 'product:show_product' %}";
+        });
+    });
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'product/product_base.html' %}
+{% block preproduct %}
+<div class="container headerdiv">
+    <h3 class="headertext" align="center">订单详情</h3>
+</div>
+{% endblock %}
+{% block product_content %}
+
+<div class="table-responsive text-nowrap">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">序号</th>
+            <th scope="col">商品</th>
+            <th scope="col">单位数量</th>
+            <th scope="col">价格</th>
+            <th scope="col">货主地址</th>
+            <th scope="col">订购日期</th>
+            <th scope="col">发货日期</th>
+            <th scope="col">运货商名称</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ order.order_id }}</td>
+            <td>{{ order.product.product_name }}</td>
+            <td>{{ order.product.product_quantity }}</td>
+            <td>{{ order.product.product_price }}元</td>
+            <td>{{ order.order_C_Address }}</td>
+            <td>{{ order.order_orderdate }}
+            <td>{{ order.order_senddate }}</td>
+            <td>{{ order.product.category.supplier.supplier_name}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
